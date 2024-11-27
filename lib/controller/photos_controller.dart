@@ -13,7 +13,19 @@ class PhotosController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllPhotos();
+    getAllPhotos2();
+  }
+
+  void getAllPhotos2() async {
+    isLoading(true);
+
+    try {
+      isLoading(true);
+      var eachPhotos = await RemoteServices.fetchPhotos();
+      photosList(eachPhotos);
+    } finally {
+      isLoading(false);
+    }
   }
 
   getAllPhotos() async {

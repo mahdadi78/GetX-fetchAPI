@@ -13,8 +13,20 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.black38,
         appBar: AppBar(title: const Text('GetX FetchAPI')),
         body: Scaffold(
-            body: GetX<PhotosController>(
-          builder: (_) => Text(controller.photosList.length.toString()),
-        )));
+            body: Obx(() => controller.isLoading.value
+                ? const SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Center(
+                      child: Text('Error to loading...'),
+                    ),
+                  )
+                : SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Center(
+                      child: Text(controller.photosList.length.toString()),
+                    ),
+                  ))));
   }
 }
